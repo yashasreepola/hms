@@ -11,7 +11,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Replace with your actual GitHub repository URL
-                git branch: 'main', url: 'https://github.com/yashasreepola/hms.git'
+                git branch: 'master', url: 'https://github.com/yashasreepola/hms.git'
             }
         }
         stage('Build & Test') {
