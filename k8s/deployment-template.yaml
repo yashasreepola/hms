@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hms-backend
+  namespace: hms-ns
+  labels:
+    app: hms-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hms-backend
+  template:
+    metadata:
+      labels:
+        app: hms-backend
+    spec:
+      containers:
+        - name: hms-container
+          # If you are using Docker Hub, replace 'my-docker-hub-username' with your actual username
+          image: my-docker-hub-username/hms-backend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            # This points to the database service.
+            # Ensure your Postgres database is also running in the 'hms-ns' namespace!
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://postgres-service:5432/hms_db"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "postgres"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "password"
