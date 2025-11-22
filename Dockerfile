@@ -7,8 +7,8 @@ COPY src ./src
 RUN mvn clean package -DskipTests
 
 # Stage 2: Run
-# CRITICAL CHANGE: We use openjdk:21 (not 17) to match the build version
-FROM openjdk:21-jdk-slim
+# CRITICAL FIX: 'openjdk:21-jdk-slim' does not exist. We use Eclipse Temurin instead.
+FROM eclipse-temurin:21-jre-jammy
 WORKDIR /app
 COPY --from=build /app/target/hms-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
