@@ -4,16 +4,18 @@ import com.edu.hotelmanagement.hms.controller.BookingController;
 import com.edu.hotelmanagement.hms.model.Booking;
 import com.edu.hotelmanagement.hms.repository.BookingRepository;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.ResponseEntity;
 
 import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest
+// CRITICAL: This annotation ensures we DO NOT load the database/Spring Context
+@ExtendWith(MockitoExtension.class)
 class BookingControllerTest {
 
     @Mock
